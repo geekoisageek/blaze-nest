@@ -6,8 +6,27 @@
 generator client {
   provider = "prisma-client"
   output   = "../generated/prisma"
+  moduleFormat = "commonjs"
 }
 
 datasource db {
   provider = "postgresql"
+}
+
+model User {
+  id    Int @id @default(autoincrement())
+  username  String @unique
+  email    String @unique
+  emailVerifiedAt DateTime?
+  password String
+  birthdate DateTime
+  location String?
+  bio String?
+  gender Gender?
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
 }
